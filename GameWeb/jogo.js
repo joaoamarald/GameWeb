@@ -1,6 +1,7 @@
 // base para uma função de um evento de redimensionamento atualizado
 var altura = 0
 var largura = 0
+var vidas = 1
 
 function ajustarTamanhoPalcoJogo() {
 
@@ -18,6 +19,13 @@ function posicaoRandomica() {
     //remover o luffy anterior (caso exista)
     if (document.getElementById('luffy')) {
         document.getElementById('luffy').remove()
+
+        if( vidas > 3) {
+            alert('Game Over')
+        } else {document.getElementById('v' + vidas).src = 'imagens/coracao_vazio.png'
+
+        vidas++
+    }
     }
 
     var posicaoX = Math.floor(Math.random() * largura) - 90
@@ -36,6 +44,9 @@ function posicaoRandomica() {
     luffy.style.top = posicaoY + 'px'
     luffy.style.position = 'absolute'
     luffy.id = 'luffy'
+    luffy.onclick = function() {
+        this.remove()
+    }
 
 
     document.body.appendChild(luffy)
