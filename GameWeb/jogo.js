@@ -2,6 +2,7 @@
 var altura = 0
 var largura = 0
 var vidas = 1
+var tempo = 5
 
 function ajustarTamanhoPalcoJogo() {
 
@@ -13,6 +14,20 @@ function ajustarTamanhoPalcoJogo() {
 
 ajustarTamanhoPalcoJogo()
 
+//cronometro
+var cronometro = setInterval(function(){
+    
+    tempo -= 1
+    if(tempo < 0){
+    clearInterval(cronometro)
+    clearInterval(criarLuffy)
+    alert('você venceu')
+    } else {
+    document.getElementById('cronometro').innerHTML = tempo
+    }
+
+}, 1000)
+
 //Posição aleatória
 function posicaoRandomica() { 
 
@@ -21,11 +36,11 @@ function posicaoRandomica() {
         document.getElementById('luffy').remove()
 
         if( vidas > 3) {
-            alert('Game Over')
+            window.location.href = 'Fim_de_jogo.html'
         } else {document.getElementById('v' + vidas).src = 'imagens/coracao_vazio.png'
 
         vidas++
-    }
+        }
     }
 
     var posicaoX = Math.floor(Math.random() * largura) - 90
